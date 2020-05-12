@@ -1,12 +1,71 @@
-//
+// functie voor de vershillende posities
+function randomPosition(direction) {
+    return Math.floor(Math.random()* 100) + direction
+}
+
 // vis element
 //
-let fish = document.getElementsByTagName("fish")[0]
-fish.style.transform = "translate(200px, 100px)"
-fish.style.filter = "hue-rotate(200deg)"
+
+function createFish() {
+    let fish = document.createElement("fish")
+    document.body.appendChild(fish)
+
+    let x = randomPosition('vw');
+    let y = randomPosition('vh');
+    fish.style.transform = `translate(${x}, ${y})`;
+
+    let randomhue = Math.random() * (360);
+    fish.style.filter = `hue-rotate(${randomhue}deg)`
+
+    fish.addEventListener("click", function(){
+    fish.classList.add("dead");
+    console.log("added to deadfish")
+})
+
+
+}
+
 
 //
 // bubble element
 //
-let bubble = document.getElementsByTagName("bubble")[0]
-bubble.style.transform = "translate(20vw, 100vh)"
+function createBubble() {
+    let bubble = document.createElement("bubble");
+    document.body.appendChild(bubble);
+
+    let x = randomPosition('vw');
+    let y = randomPosition('vh');
+    bubble.style.transform = `translate(${x}, ${y})`
+
+    bubble.addEventListener("click", function(){
+        bubble.remove();
+    })
+}
+
+for(let i=0; i<100; i++) {
+    createBubble();
+    createFish();
+}
+
+
+
+// Waarom werkt dit niet??
+
+// fish.addEventListener("click", function(){
+//    if(fish.style.filter = "hue-rotate(100deg)") {
+//        fish.style.filter = "hue-rotate(200deg)"
+//        console.log('1')
+//    } else {
+//        fish.style.filter = "hue-rotate(100deg)"
+//        console.log("2");
+       
+//    }
+// })
+
+// Nog een vraag??
+
+// fish.addEventListener("click", function(){
+//     fish.style.filter = "hue-rotate(Math.floor(Math.random() * 361))"
+// })
+
+
